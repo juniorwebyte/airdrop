@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação de Instalação - WebyteCoin Airdrop</title>
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --secondary: #ec4899;
+            --background: #0f172a;
+            --foreground: #f8fafc;
+            --muted: #1e293b;
+            --muted-foreground: #94a3b8;
+            --border: #334155;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --code-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--secondary);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-left-color: #3b82f6;
+        }
+
+        .alert-warning {
+            background-color: rgba(245, 158, 11, 0.1);
+            border-left-color: var(--warning);
+        }
+
+        .alert-success {
+            background-color: rgba(16, 185, 129, 0.1);
+            border-left-color: var(--success);
+        }
+
+        .alert-danger {
+            background-color: rgba(239, 68, 68, 0.1);
+            border-left-color: var(--danger);
+        }
+
+        .alert h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: inherit;
+        }
+
+        .card {
+            background-color: var(--muted);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .toc {
+            background-color: var(--muted);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 2rem;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc a {
+            color: var(--foreground);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            color: var(--primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .toc {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .step {
+            counter-increment: step;
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .step::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted-foreground);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: var(--muted);
+            border: 1px solid var(--border);
+            color: var(--muted-foreground);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .code-container {
+            position: relative;
+        }
+
+        .tab-container {
+            margin-bottom: 2rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            border: none;
+            color: var(--muted-foreground);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 0.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: var(--muted);
+            border-radius: 0.25rem;
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            height: 0.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 0.25rem;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--muted-foreground);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>WebyteCoin ($WBC) Airdrop</h1>
+            <p>Guia completo de instalação e configuração</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="grid">
+            <aside>
+                <div class="toc">
+                    <h3>Índice</h3>
+                    <ul>
+                        <li><a href="#introducao">1. Introdução</a></li>
+                        <li><a href="#requisitos">2. Requisitos do Sistema</a></li>
+                        <li><a href="#preparacao">3. Preparação do Ambiente</a></li>
+                        <li><a href="#contrato">4. Configuração do Contrato</a></li>
+                        <li><a href="#instalacao">5. Instalação da Aplicação</a></li>
+                        <li><a href="#configuracao">6. Configuração da Aplicação</a></li>
+                        <li><a href="#claim-system">7. Sistema de Reivindicação</a></li>
+                        <li><a href="#deploy">8. Implantação em Produção</a></li>
+                        <li><a href="#monitoramento">9. Monitoramento e Manutenção</a></li>
+                        <li><a href="#troubleshooting">10. Solução de Problemas</a></li>
+                    </ul>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                    <div class="progress-text" id="progress-text">0% Concluído</div>
+                </div>
+            </aside>
+
+            <main>
+                <section id="introducao">
+                    <h2>1. Introdução</h2>
+                    <p>Este documento fornece instruções detalhadas para instalar, configurar e implantar o sistema de airdrop WebyteCoin ($WBC). O sistema permite que os usuários participem do airdrop completando tarefas específicas e reivindicando tokens $WBC.</p>
+
+                    <div class="alert alert-info">
+                        <h4>Sobre o WebyteCoin Airdrop</h4>
+                        <p>O WebyteCoin Airdrop é uma plataforma completa para distribuição de tokens $WBC através de um sistema de tarefas e referências. Os usuários podem conectar suas carteiras, completar tarefas como seguir perfis em redes sociais, participar de grupos de Telegram, e receber tokens como recompensa.</p>
+                    </div>
+
+                    <p>O sistema inclui as seguintes funcionalidades principais:</p>
+                    <ul>
+                        <li>Conexão de carteira Web3 (MetaMask, WalletConnect, etc.)</li>
+                        <li>Sistema de verificação de tarefas (Twitter, Telegram, etc.)</li>
+                        <li>Rastreamento de progresso com persistência de dados</li>
+                        <li>Sistema de referência para recompensar usuários que convidam outros</li>
+                        <li>Verificação de elegibilidade para o airdrop</li>
+                        <li>Reivindicação de tokens com feedback visual</li>
+                        <li>Suporte para múltiplas redes blockchain</li>
+                    </ul>
+                </section>
+
+                <section id="requisitos">
+                    <h2>2. Requisitos do Sistema</h2>
+                    <p>Antes de iniciar a instalação, certifique-se de que seu ambiente atende aos seguintes requisitos:</p>
+
+                    <div class="card">
+                        <div class="card-title">Requisitos de Hardware</div>
+                        <ul>
+                            <li><strong>Servidor:</strong> VPS com pelo menos 2GB de RAM e 1 vCPU</li>
+                            <li><strong>Recomendado:</strong> 4GB RAM, 2 vCPU para melhor desempenho</li>
+                            <li><strong>Armazenamento:</strong> Mínimo de 20GB de espaço em disco</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Requisitos de Software</div>
+                        <ul>
+                            <li><strong>Sistema Operacional:</strong> Ubuntu 20.04 LTS ou superior</li>
+                            <li><strong>Node.js:</strong> Versão 16.x ou superior</li>
+                            <li><strong>Servidor Web:</strong> Nginx ou Apache</li>
+                            <li><strong>Certificado SSL:</strong> Let's Encrypt ou similar</li>
+                            <li><strong>Banco de Dados:</strong> MongoDB ou PostgreSQL (opcional)</li>
+                            <li><strong>Redis:</strong> Para cache e gerenciamento de sessões (opcional)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Requisitos de Rede</div>
+                        <ul>
+                            <li><strong>Domínio:</strong> Um domínio registrado para hospedar a aplicação</li>
+                            <li><strong>DNS:</strong> Configuração de registros A ou CNAME apontando para o servidor</li>
+                            <li><strong>Portas:</strong> 80 (HTTP), 443 (HTTPS), 22 (SSH)</li>
+                            <li><strong>Firewall:</strong> Configurado para permitir tráfego nas portas necessárias</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Requisitos de Blockchain</div>
+                        <ul>
+                            <li><strong>Conta na Infura ou Alchemy:</strong> Para acesso às redes blockchain</li>
+                            <li><strong>Carteira Ethereum:</strong> Com fundos suficientes para implantação de contratos</li>
+                            <li><strong>MetaMask:</strong> Ou outra carteira compatível com Web3 para implantação</li>
+                            <li><strong>Tokens $WBC:</strong> Para distribuição através do contrato de airdrop</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="preparacao">
+                    <h2>3. Preparação do Ambiente</h2>
+                    <p>Siga estas etapas para preparar seu ambiente de desenvolvimento e servidor:</p>
+
+                    <div class="step">
+                        <div class="step-title">Configuração do Servidor</div>
+                        <p>Atualize o sistema e instale as dependências necessárias:</p>
+                        <div class="code-container">
+                            <pre><code># Atualizar o sistema
+sudo apt update && sudo apt upgrade -y
+
+# Instalar dependências
+sudo apt install -y curl git build-essential nginx
+
+# Instalar Node.js 16.x
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Verificar instalação
+node --version # Deve mostrar v16.x.x
+npm --version # Deve mostrar 8.x.x
+
+# Instalar PM2 para gerenciamento de processos
+sudo npm install -g pm2</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Configuração do Nginx</div>
+                        <p>Configure o Nginx como proxy reverso para a aplicação Next.js:</p>
+                        <div class="code-container">
+                            <pre><code># Criar arquivo de configuração do Nginx
+sudo nano /etc/nginx/sites-available/webytecoin
+
+# Adicionar a seguinte configuração:
+server {
+    listen 80;
+    server_name seu-dominio.com www.seu-dominio.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+# Ativar o site
+sudo ln -s /etc/nginx/sites-available/webytecoin /etc/nginx/sites-enabled/
+
+# Verificar configuração
+sudo nginx -t
+
+# Reiniciar Nginx
+sudo systemctl restart nginx</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Configuração do SSL com Let's Encrypt</div>
+                        <p>Instale o Certbot e obtenha um certificado SSL para seu domínio:</p>
+                        <div class="code-container">
+                            <pre><code># Instalar Certbot
+sudo apt install -y certbot python3-certbot-nginx
+
+# Obter certificado SSL
+sudo certbot --nginx -d seu-dominio.com -d www.seu-dominio.com
+
+# Seguir as instruções na tela
+
+# Verificar renovação automática
+sudo certbot renew --dry-run</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Configuração do Firewall</div>
+                        <p>Configure o firewall UFW para proteger seu servidor:</p>
+                        <div class="code-container">
+                            <pre><code># Instalar UFW se não estiver instalado
+sudo apt install -y ufw
+
+# Configurar regras básicas
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+
+# Ativar o firewall
+sudo ufw enable
+
+# Verificar status
+sudo ufw status</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <h4>Atenção</h4>
+                        <p>Certifique-se de que a porta SSH (22) está permitida antes de ativar o firewall, caso contrário, você poderá perder o acesso ao servidor.</p>
+                    </div>
+                </section>
+
+                <section id="contrato">
+                    <h2>4. Configuração do Contrato</h2>
+                    <p>O sistema de airdrop WebyteCoin requer a implantação de um contrato inteligente para gerenciar a distribuição de tokens.</p>
+
+                    <div class="step">
+                        <div class="step-title">Preparação do Contrato</div>
+                        <p>O contrato inteligente WebyteCoinAirdrop.sol deve ser configurado com os parâmetros corretos:</p>
+                        <div class="code-container">
+                            <pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
+contract WebyteCoinAirdrop is Ownable, ReentrancyGuard {
+    IERC20 public token;
+    
+    // Valor de tokens por usuário
+    uint256 public airdropAmount = 1000 * 10**18; // 1000 tokens por usuário
+    
+    // Bônus de referral
+    uint256 public referralBonus = 200 * 10**18; // 200 tokens por referral
+    
+    // Períodos de início e término
+    uint256 public startTime;
+    uint256 public endTime;
+    
+    // Status do airdrop
+    bool public airdropActive = false;
+    
+    // Mapeamento para rastrear reivindicações
+    mapping(address => bool) public hasClaimed;
+    
+    // Mapeamento para rastrear referências
+    mapping(address => address) public referrals;
+    mapping(address => uint256) public referralCount;
+    
+    // Eventos
+    event TokensClaimed(address indexed user, uint256 amount);
+    event ReferralBonusPaid(address indexed referrer, address indexed referred, uint256 amount);
+    
+    constructor(address _tokenAddress) {
+        token = IERC20(_tokenAddress);
+    }
+    
+    // Configurar períodos de início e término
+    function setAirdropTime(uint256 _startTime, uint256 _endTime) external onlyOwner {
+        require(_startTime < _endTime, "Start time must be before end time");
+        startTime = _startTime;
+        endTime = _endTime;
+    }
+    
+    // Ativar/desativar airdrop
+    function toggleAirdropStatus() external onlyOwner {
+        airdropActive = !airdropActive;
+    }
+    
+    // Verificar elegibilidade
+    function isEligible(address _user) public view returns (bool) {
+        return airdropActive && 
+               block.timestamp >= startTime && 
+               block.timestamp <= endTime && 
+               !hasClaimed[_user];
+    }
+    
+    // Reivindicar tokens
+    function claimTokens() external nonReentrant {
+        require(isEligible(msg.sender), "Not eligible to claim");
+        
+        hasClaimed[msg.sender] = true;
+        token.transfer(msg.sender, airdropAmount);
+        
+        emit TokensClaimed(msg.sender, airdropAmount);
+    }
+    
+    // Reivindicar com referência
+    function claimWithReferral(address _referrer) external nonReentrant {
+        require(isEligible(msg.sender), "Not eligible to claim");
+        require(_referrer != msg.sender, "Cannot refer yourself");
+        require(_referrer != address(0), "Invalid referrer address");
+        
+        hasClaimed[msg.sender] = true;
+        referrals[msg.sender] = _referrer;
+        referralCount[_referrer]++;
+        
+        token.transfer(msg.sender, airdropAmount);
+        emit TokensClaimed(msg.sender, airdropAmount);
+        
+        // Pagar bônus de referência
+        if (token.balanceOf(address(this)) >= referralBonus) {
+            token.transfer(_referrer, referralBonus);
+            emit ReferralBonusPaid(_referrer, msg.sender, referralBonus);
+        }
+    }
+    
+    // Resgatar tokens não utilizados (apenas proprietário)
+    function withdrawTokens() external onlyOwner {
+        uint256 balance = token.balanceOf(address(this));
+        require(balance > 0, "No tokens to withdraw");
+        token.transfer(owner(), balance);
+    }
+}</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Compilação e Implantação</div>
+                        <p>Use o Remix IDE para compilar e implantar o contrato:</p>
+                        <ol>
+                            <li>Acesse o <a href="https://remix.ethereum.org/" target="_blank">Remix IDE</a></li>
+                            <li>Crie um novo arquivo e cole o código do contrato WebyteCoinAirdrop.sol</li>
+                            <li>Compile o contrato (Solidity Compiler 0.8.17+)</li>
+                            <li>Vá para a aba "Deploy & Run Transactions"</li>
+                            <li>Selecione "Injected Web3" como ambiente (certifique-se de que o MetaMask está conectado)</li>
+                            <li>Selecione a rede desejada no MetaMask (Ethereum, BSC, Polygon, etc.)</li>
+                            <li>Implante o contrato com o endereço do token ERC-20 como parâmetro</li>
+                            <li>Anote o endereço do contrato implantado</li>
+                        </ol>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Configuração Pós-Implantação</div>
+                        <p>Após a implantação, configure o contrato:</p>
+                        <ol>
+                            <li>Chame a função <code>setAirdropTime</code> para definir as datas de início e término</li>
+                            <li>Chame a função <code>toggleAirdropStatus</code> para ativar o airdrop</li>
+                            <li>Transfira tokens para o contrato (suficientes para cobrir todos os participantes esperados)</li>
+                            <li>Verifique o contrato no explorador de blocos (Etherscan, BscScan, etc.)</li>
+                        </ol>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h4>Dica</h4>
+                        <p>Implante o contrato em redes de teste (Goerli, BSC Testnet) primeiro para verificar se tudo está funcionando corretamente antes de implantar em redes principais.</p>
+                    </div>
+                </section>
+
+                <section id="instalacao">
+                    <h2>5. Instalação da Aplicação</h2>
+                    <p>Siga estas etapas para instalar a aplicação WebyteCoin Airdrop em seu servidor:</p>
+
+                    <div class="step">
+                        <div class="step-title">Clonar o Repositório</div>
+                        <div class="code-container">
+                            <pre><code># Criar diretório para a aplicação
+mkdir -p /var/www/webytecoin
+
+# Clonar o repositório
+git clone https://github.com/seu-usuario/webytecoin-airdrop.git /var/www/webytecoin
+
+# Navegar até o diretório
+cd /var/www/webytecoin</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Instalar Dependências</div>
+                        <div class="code-container">
+                            <pre><code># Instalar dependências
+npm install</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Configurar Variáveis de Ambiente</div>
+                        <p>Crie um arquivo .env.local na raiz do projeto:</p>
+                        <div class="code-container">
+                            <pre><code># Criar arquivo .env.local
+cat > /var/www/webytecoin/.env.local << EOL
+# Endereços dos contratos em diferentes redes
+NEXT_PUBLIC_CONTRACT_ADDRESS_ETHEREUM=0x... # Substitua pelo endereço real
+NEXT_PUBLIC_CONTRACT_ADDRESS_BSC=0x... # Substitua pelo endereço real
+NEXT_PUBLIC_CONTRACT_ADDRESS_POLYGON=0x... # Substitua pelo endereço real
+NEXT_PUBLIC_CONTRACT_ADDRESS_GOERLI=0x... # Substitua pelo endereço real
+NEXT_PUBLIC_CONTRACT_ADDRESS_BSC_TESTNET=0x... # Substitua pelo endereço real
+
+# Endereço do token ERC-20
+NEXT_PUBLIC_TOKEN_ADDRESS=0x... # Substitua pelo endereço real
+
+# Chaves de API (obrigatório para conexão com as redes)
+NEXT_PUBLIC_INFURA_ID=your_infura_id
+NEXT_PUBLIC_ALCHEMY_KEY=your_alchemy_key
+
+# Configurações do sistema de reivindicação
+NEXT_PUBLIC_ENABLE_CLAIM_SYSTEM=true
+NEXT_PUBLIC_MAX_TASKS_PER_USER=4
+NEXT_PUBLIC_CLAIM_AMOUNT=1000
+NEXT_PUBLIC_REFERRAL_BONUS=200
+EOL</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Construir a Aplicação</div>
+                        <div class="code-container">
+                            <pre><code># Construir a aplicação
+npm run build</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Iniciar com PM2</div>
+                        <div class="code-container">
+                            <pre><code># Iniciar com PM2
+pm2 start npm --name "webytecoin" -- start
+
+# Salvar configuração do PM2
+pm2 save
+
+# Configurar inicialização automática
+pm2 startup</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="configuracao">
+                    <h2>6. Configuração da Aplicação</h2>
+                    <p>Após a instalação, você precisa configurar alguns aspectos específicos da aplicação:</p>
+
+                    <div class="step">
+                        <div class="step-title">Configuração de Redes</div>
+                        <p>Edite o arquivo <code>lib/networks.ts</code> para configurar as redes blockchain suportadas:</p>
+                        <div class="code-container">
+                            <pre><code>export const SUPPORTED_NETWORKS: NetworkType[] = [
+  {
+    id: "ethereum",
+    name: "Ethereum",
+    chainId: 1,
+    rpcUrl: `https://mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`,
+    currencySymbol: "ETH",
+    blockExplorerUrl: "https://etherscan.io",
+    isTestnet: false,
+  },
+  {
+    id: "bsc",
+    name: "Binance Smart Chain",
+    chainId: 56,
+    rpcUrl: "https://bsc-dataseed.binance.org",
+    currencySymbol: "BNB",
+    blockExplorerUrl: "https://bscscan.com",
+    isTestnet: false,
+  },
+  {
+    id: "polygon",
+    name: "Polygon",
+    chainId: 137,
+    rpcUrl: `https://polygon-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`,
+    currencySymbol: "MATIC",
+    blockExplorerUrl: "https://polygonscan.com",
+    isTestnet: false,
+  },
+  // Adicione ou modifique as redes conforme necessário
+];</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Configuração de Tarefas</div>
+                        <p>Crie ou edite o arquivo <code>config/tasks.json</code> para definir as tarefas do airdrop:</p>
+                        <div class="code-container">
+                            <pre><code>{
+  "tasks": [
+    {
+      "id": "twitter-follow",
+      "type": "social",
+      "platform": "twitter",
+      "action": "follow",
+      "target": "@WebyteCoin",
+      "points": 10,
+      "required": true
+    },
+    {
+      "id": "telegram-join",
+      "type": "social",
+      "platform": "telegram",
+      "action": "join",
+      "target": "WebyteCoinOfficial",
+      "points": 10,
+      "required": true
+    },
+    {
+      "id": "twitter-retweet",
+      "type": "social",
+      "platform": "twitter",
+      "action": "retweet",
+      "target": "https://twitter.com/WebyteCoin/status/123456789",
+      "points": 5,
+      "required": false
+    },
+    {
+      "id": "discord-join",
+      "type": "social",
+      "platform": "discord",
+      "action": "join",
+      "target": "WebyteCoin",
+      "points": 5,
+      "required": false
+    }
+  ],
+  "minimumPoints": 20,
+  "referralBonus": 20
+}</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Configuração de ABIs</div>
+                        <p>Certifique-se de que os arquivos ABI estão corretos:</p>
+                        <ol>
+                            <li>Crie a pasta <code>contracts/abi</code> se não existir</li>
+                            <li>Adicione o ABI do contrato de airdrop em <code>contracts/abi/WebyteCoinAirdrop.json</code></li>
+                            <li>Adicione o ABI do token ERC-20 em <code>contracts/abi/ERC20.json</code></li>
+                        </ol>
+                        <p>Você pode obter o ABI após compilar o contrato no Remix ou exportá-lo do explorador de blocos após verificar o contrato.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Personalização da Interface</div>
+                        <p>Personalize a interface do usuário editando os seguintes arquivos:</p>
+                        <ul>
+                            <li><code>components/navbar.tsx</code> - Cabeçalho e navegação</li>
+                            <li><code>components/footer.tsx</code> - Rodapé</li>
+                            <li><code>app/page.tsx</code> - Página inicial</li>
+                            <li><code>styles/globals.css</code> - Estilos globais e cores</li>
+                            <li><code>tailwind.config.js</code> - Configuração de cores e temas</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="claim-system">
+                    <h2>7. Sistema de Reivindicação</h2>
+                    <p>O sistema de reivindicação é uma parte fundamental do airdrop WebyteCoin. Ele permite que os usuários completem tarefas e reivindiquem seus tokens.</p>
+
+                    <div class="step">
+                        <div class="step-title">Verificação de Tarefas</div>
+                        <p>O sistema de verificação de tarefas inclui:</p>
+                        <ul>
+                            <li>Verificação de seguidores no Twitter</li>
+                            <li>Verificação de participação em grupos do Telegram</li>
+                            <li>Verificação de retweets e curtidas</li>
+                            <li>Verificação de participação em servidores Discord</li>
+                        </ul>
+                        <p>Cada tarefa é verificada através de APIs ou simulação, dependendo da configuração.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Persistência de Dados</div>
+                        <p>O sistema utiliza localStorage para persistir o progresso do usuário entre sessões. Para uma solução mais robusta, você pode implementar um banco de dados:</p>
+                        <div class="tab-container">
+                            <div class="tab-buttons">
+                                <button class="tab-btn active" onclick="openTab(event, 'localStorage')">LocalStorage</button>
+                                <button class="tab-btn" onclick="openTab(event, 'mongodb')">MongoDB</button>
+                                <button class="tab-btn" onclick="openTab(event, 'postgresql')">PostgreSQL</button>
+                            </div>
+                            <div id="localStorage" class="tab-content active">
+                                <p>A implementação atual usa localStorage para persistência:</p>
+                                <pre><code>// Salvar progresso
+const saveProgress = (tasks) => {
+  localStorage.setItem('webytecoin-tasks', JSON.stringify(tasks));
+};
+
+// Carregar progresso
+const loadProgress = () => {
+  const savedTasks = localStorage.getItem('webytecoin-tasks');
+  return savedTasks ? JSON.parse(savedTasks) : null;
+};</code></pre>
+                            </div>
+                            <div id="mongodb" class="tab-content">
+                                <p>Para implementar com MongoDB:</p>
+                                <pre><code>// Instalar dependências
+// npm install mongodb
+
+// Configurar conexão
+import { MongoClient } from 'mongodb';
+
+const uri = process.env.MONGODB_URI;
+const client = new MongoClient(uri);
+
+// Salvar progresso
+async function saveProgress(address, tasks) {
+  await client.connect();
+  const database = client.db('webytecoin');
+  const collection = database.collection('user-tasks');
+  
+  await collection.updateOne(
+    { address },
+    { $set: { tasks, updatedAt: new Date() } },
+    { upsert: true }
+  );
+}
+
+// Carregar progresso
+async function loadProgress(address) {
+  await client.connect();
+  const database = client.db('webytecoin');
+  const collection = database.collection('user-tasks');
+  
+  const result = await collection.findOne({ address });
+  return result ? result.tasks : null;
+}</code></pre>
+                            </div>
+                            <div id="postgresql" class="tab-content">
+                                <p>Para implementar com PostgreSQL:</p>
+                                <pre><code>// Instalar dependências
+// npm install pg
+
+// Configurar conexão
+import { Pool } from 'pg';
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+// Criar tabela
+async function createTable() {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS user_tasks (
+      address VARCHAR(42) PRIMARY KEY,
+      tasks JSONB NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+}
+
+// Salvar progresso
+async function saveProgress(address, tasks) {
+  await pool.query(
+    `INSERT INTO user_tasks (address, tasks) 
+     VALUES ($1, $2)
+     ON CONFLICT (address) 
+     DO UPDATE SET tasks = $2, updated_at = CURRENT_TIMESTAMP`,
+    [address, JSON.stringify(tasks)]
+  );
+}
+
+// Carregar progresso
+async function loadProgress(address) {
+  const result = await pool.query(
+    'SELECT tasks FROM user_tasks WHERE address = $1',
+    [address]
+  );
+  
+  return result.rows.length > 0 ? result.rows[0].tasks : null;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Sistema de Referência</div>
+                        <p>O sistema de referência permite que os usuários convidem outros e recebam bônus:</p>
+                        <ol>
+                            <li>Cada usuário recebe um link de referência único baseado em seu endereço de carteira</li>
+                            <li>Quando um novo usuário se registra usando o link de referência, o referenciador é registrado</li>
+                            <li>Quando o novo usuário reivindica tokens, o referenciador recebe um bônus</li>
+                        </ol>
+                        <p>O bônus de referência é configurado no contrato inteligente e pode ser ajustado pelo proprietário.</p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h4>Dica</h4>
+                        <p>Para evitar fraudes, implemente verificações adicionais, como verificar se o endereço IP do usuário já participou do airdrop ou limitar o número de referências por endereço.</p>
+                    </div>
+                </section>
+
+                <section id="deploy">
+                    <h2>8. Implantação em Produção</h2>
+                    <p>Quando estiver pronto para implantar em produção, siga estas etapas finais:</p>
+
+                    <div class="step">
+                        <div class="step-title">Verificação Final</div>
+                        <p>Antes de lançar, verifique os seguintes itens:</p>
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check1">
+                                <label for="check1">Contrato implantado e verificado em todas as redes suportadas</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check2">
+                                <label for="check2">Tokens transferidos para o contrato de airdrop</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check3">
+                                <label for="check3">Variáveis de ambiente configuradas corretamente</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check4">
+                                <label for="check4">Sistema de verificação de tarefas testado e funcionando</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check5">
+                                <label for="check5">Sistema de referência testado e funcionando</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check6">
+                                <label for="check6">Interface personalizada e responsiva</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check7">
+                                <label for="check7">SSL configurado e funcionando</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check8">
+                                <label for="check8">Backup do servidor configurado</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Otimização de Desempenho</div>
+                        <p>Otimize a aplicação para melhor desempenho:</p>
+                        <div class="code-container">
+                            <pre><code># Otimizar build para produção
+npm run build
+
+# Configurar cache no Nginx
+sudo nano /etc/nginx/sites-available/webytecoin
+
+# Adicionar configuração de cache
+location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+    expires 30d;
+    add_header Cache-Control "public, no-transform";
+}
+
+# Reiniciar Nginx
+sudo systemctl restart nginx</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Configuração de Backup</div>
+                        <p>Configure backups automáticos:</p>
+                        <div class="code-container">
+                            <pre><code># Criar script de backup
+sudo nano /usr/local/bin/backup-webytecoin.sh
+
+# Conteúdo do script
+#!/bin/bash
+BACKUP_DIR="/var/backups/webytecoin"
+DATE=$(date +%Y-%m-%d)
+mkdir -p $BACKUP_DIR
+tar -czf $BACKUP_DIR/webytecoin-$DATE.tar.gz /var/www/webytecoin
+find $BACKUP_DIR -type f -mtime +30 -delete
+
+# Tornar executável
+sudo chmod +x /usr/local/bin/backup-webytecoin.sh
+
+# Adicionar ao crontab
+(crontab -l 2>/dev/null; echo "0 2 * * * /usr/local/bin/backup-webytecoin.sh") | crontab -</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Monitoramento</div>
+                        <p>Configure o monitoramento da aplicação:</p>
+                        <div class="code-container">
+                            <pre><code># Configurar monitoramento com PM2
+pm2 install pm2-logrotate
+pm2 set pm2-logrotate:max_size 10M
+pm2 set pm2-logrotate:retain 7
+
+# Monitorar logs
+pm2 logs webytecoin
+
+# Monitorar status
+pm2 monit</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <h4>Pronto para Lançamento!</h4>
+                        <p>Sua aplicação WebyteCoin Airdrop está pronta para ser lançada. Certifique-se de testar tudo uma última vez antes de anunciar publicamente.</p>
+                    </div>
+                </section>
+
+                <section id="monitoramento">
+                    <h2>9. Monitoramento e Manutenção</h2>
+                    <p>Após o lançamento, é importante monitorar e manter a aplicação:</p>
+
+                    <div class="card">
+                        <div class="card-title">Monitoramento de Logs</div>
+                        <p>Monitore os logs da aplicação regularmente:</p>
+                        <div class="code-container">
+                            <pre><code># Ver logs em tempo real
+pm2 logs webytecoin
+
+# Ver logs de erro
+pm2 logs webytecoin --err
+
+# Ver logs do Nginx
+sudo tail -f /var/log/nginx/error.log
+sudo tail -f /var/log/nginx/access.log</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Atualizações</div>
+                        <p>Mantenha a aplicação atualizada:</p>
+                        <div class="code-container">
+                            <pre><code># Atualizar o código
+cd /var/www/webytecoin
+git pull
+
+# Atualizar dependências
+npm install
+
+# Reconstruir a aplicação
+npm run build
+
+# Reiniciar a aplicação
+pm2 restart webytecoin</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Segurança</div>
+                        <p>Mantenha o servidor seguro:</p>
+                        <div class="code-container">
+                            <pre><code># Atualizar o sistema
+sudo apt update && sudo apt upgrade -y
+
+# Verificar logs de segurança
+sudo cat /var/log/auth.log | grep "Failed password"
+
+# Verificar tentativas de login SSH
+sudo lastb
+
+# Verificar serviços em execução
+sudo netstat -tulpn</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Monitoramento de Contrato</div>
+                        <p>Monitore o contrato inteligente:</p>
+                        <ul>
+                            <li>Verifique regularmente o saldo de tokens no contrato</li>
+                            <li>Monitore eventos de reivindicação e referência</li>
+                            <li>Verifique se o contrato está funcionando corretamente em todas as redes</li>
+                            <li>Esteja preparado para adicionar mais tokens ao contrato se necessário</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="troubleshooting">
+                    <h2>10. Solução de Problemas</h2>
+                    <p>Aqui estão algumas soluções para problemas comuns:</p>
+
+                    <div class="card">
+                        <div class="card-title">Problemas de Conexão de Carteira</div>
+                        <ul>
+                            <li><strong>Problema:</strong> Usuários não conseguem conectar suas carteiras</li>
+                            <li><strong>Solução:</strong> Verifique se as redes estão configuradas corretamente em <code>lib/networks.ts</code></li>
+                            <li><strong>Solução:</strong> Certifique-se de que as chaves da Infura/Alchemy estão corretas</li>
+                            <li><strong>Solução:</strong> Verifique se o navegador do usuário tem extensões de carteira instaladas</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Problemas de Verificação de Tarefas</div>
+                        <ul>
+                            <li><strong>Problema:</strong> As tarefas não são verificadas corretamente</li>
+                            <li><strong>Solução:</strong> Verifique os logs do servidor para erros de API</li>
+                            <li><strong>Solução:</strong> Certifique-se de que as APIs sociais estão funcionando</li>
+                            <li><strong>Solução:</strong> Verifique se as configurações de tarefas em <code>config/tasks.json</code> estão corretas</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Problemas de Reivindicação de Tokens</div>
+                        <ul>
+                            <li><strong>Problema:</strong> Usuários não conseguem reivindicar tokens</li>
+                            <li><strong>Solução:</strong> Verifique se o contrato tem tokens suficientes</li>
+                            <li><strong>Solução:</strong> Certifique-se de que o airdrop está ativo no contrato</li>
+                            <li><strong>Solução:</strong> Verifique se o usuário já reivindicou tokens antes</li>
+                            <li><strong>Solução:</strong> Verifique se o usuário completou todas as tarefas obrigatórias</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Problemas de Servidor</div>
+                        <ul>
+                            <li><strong>Problema:</strong> A aplicação não inicia</li>
+                            <li><strong>Solução:</strong> Verifique os logs do PM2: <code>pm2 logs webytecoin</code></li>
+                            <li><strong>Solução:</strong> Verifique se todas as dependências estão instaladas</li>
+                            <li><strong>Solução:</strong> Verifique se o Node.js está na versão correta</li>
+                        </ul>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h4>Suporte</h4>
+                        <p>Se você encontrar problemas que não consegue resolver, entre em contato com o suporte técnico ou consulte a documentação adicional.</p>
+                    </div>
+                </section>
+
+                <div class="alert alert-success">
+                    <h4>Parabéns!</h4>
+                    <p>Você concluiu a instalação e configuração do sistema de airdrop WebyteCoin. Agora você está pronto para iniciar sua campanha de distribuição de tokens!</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <p>WebyteCoin Airdrop - Documentação de Instalação</p>
+        <p>© 2025 WebyteCoin. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function copyToClipboard(button) {
+            const pre = button.previousElementSibling;
+            const code = pre.textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = "Copiado!";
+                button.style.backgroundColor = "var(--success)";
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = "";
+                }, 2000);
+            });
+        }
+
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Atualizar a barra de progresso conforme o usuário rola a página
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.scrollY;
+            const progress = (scrollTop / documentHeight) * 100;
+            
+            document.getElementById('progress-bar').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = Math.round(progress) + '% Concluído';
+        });
+
+        // Marcar checkboxes automaticamente quando clicados
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                // Contar checkboxes marcados
+                const totalCheckboxes = checkboxes.length;
+                const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                const progress = (checkedCheckboxes / totalCheckboxes) * 100;
+                
+                // Atualizar texto de progresso
+                if (checkedCheckboxes === totalCheckboxes) {
+                    document.getElementById('progress-text').textContent = 'Verificação concluída!';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
